@@ -39,6 +39,7 @@ struct Align3
     //sizeof() = 12
 };
 
+//for computing size of array of structures, they MUST have a destructor
 template <typename T>
 size_t length(T arr) {
     auto parr = (size_t*)(arr)-1;
@@ -46,8 +47,8 @@ size_t length(T arr) {
     return size1;
 }
 
-//template <typename T>
-void delet(Align3*& arr) {
+template <typename T>
+void delet(T*& arr) {
     int size = length(arr);
     for (int i = 0; i < size; ++i) {
         (*arr).~Align3();
@@ -55,6 +56,7 @@ void delet(Align3*& arr) {
     }
     arr = nullptr;
 }
+
 int main()
 {
     //std::cout << "Align1 size: " << sizeof(Align1) << '\n';
