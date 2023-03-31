@@ -51,7 +51,7 @@ template <typename T>
 void delet(T*& arr) {
     int size = length(arr);
     for (int i = 0; i < size; ++i) {
-        (*arr).~Align3();
+        (*arr).~T();
         arr++;
     }
     arr = nullptr;
